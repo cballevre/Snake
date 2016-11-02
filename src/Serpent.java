@@ -7,13 +7,13 @@ import java.util.Vector;
 
 public class Serpent {
 
-    private static int direction = 3;
+    private static int direction = 0;
     private Vector<Case> coordonnee;
-    private boolean[][] grid;
+    private int[][] grid;
     private ZoneDeJeu zoneDeJeu;
     private Snake snake;
 
-    public Serpent(Snake snake, ZoneDeJeu zoneDeJeu, boolean[][] grid) {
+    public Serpent(Snake snake, ZoneDeJeu zoneDeJeu, int[][] grid) {
 
         this.snake = snake;
         this.zoneDeJeu = zoneDeJeu;
@@ -21,7 +21,7 @@ public class Serpent {
 
 
         coordonnee = new Vector<Case>();
-        coordonnee.add(new Case(0, 0));
+        coordonnee.add(new Case(2, 2));
 
         new Processus(this);
 
@@ -30,83 +30,64 @@ public class Serpent {
     public static void setDirection(String keyText) {
         switch (keyText) {
             case "Haut":
-                direction = 0;
-                break;
-            case "Bas":
                 direction = 1;
                 break;
-            case "Gauche":
+            case "Bas":
                 direction = 2;
                 break;
-            case "Droite":
+            case "Gauche":
                 direction = 3;
+                break;
+            case "Droite":
+                direction = 4;
                 break;
         }
     }
 
     public void deplacer() {
 
-        if (grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] == true) {
+        if (grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] == 1) {
             coordonnee.add(new Case(coordonnee.lastElement().getX() + 1, coordonnee.lastElement().getY()));
-            grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] = false;
-        } else if (coordonnee.firstElement().getX() == coordonnee.lastElement().getX() && coordonnee.lastElement().getX() == coordonnee.firstElement().getY() && coordonnee.size() > 1) {
-            snake.end();
-        } else if (grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()]) {
+            grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] = 0;
+        } else if (grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] == 2) {
             snake.end();
         }
 
-
         switch (direction) {
             case 0:
-                changeDirection(-1, 'y');
                 break;
             case 1:
-                changeDirection(+1, 'y');
+                changeDirection(-1, 'y');
                 break;
             case 2:
-                changeDirection(-1, 'x');
+                changeDirection(+1, 'y');
                 break;
             case 3:
+                changeDirection(-1, 'x');
+                break;
+            case 4:
                 changeDirection(+1, 'x');
                 break;
         }
 
     }
 
-    public void changeDirection(int dir, char axis) {
+    public void changeDirection(int dir, char axis){
 
+        int coorX;
+        int coorY;
 
-        if (coordonnee.size() > 1) {
-            if (axis == 'y') {
-                if (coordonnee.firstElement().getY() + dir == coordonnee.get(1).getY()) {
-                    coordonnee.remove(coordonnee.lastElement());
-                    coordonnee.add(0, new Case(coordonnee.firstElement().getX(), coordonnee.firstElement().getY() + opposit(dir)));
-                } else {
-                    coordonnee.remove(coordonnee.lastElement());
-                    coordonnee.add(0, new Case(coordonnee.firstElement().getX(), coordonnee.firstElement().getY() + dir));
-                }
-            } else if (axis == 'x') {
-                if (coordonnee.firstElement().getX() + dir == coordonnee.get(1).getX()) {
-                    coordonnee.remove(coordonnee.lastElement());
-                    coordonnee.add(0, new Case(coordonnee.firstElement().getX() + opposit(dir), coordonnee.firstElement().getY()));
-                } else {
-                    coordonnee.remove(coordonnee.lastElement());
-                    coordonnee.add(0, new Case(coordonnee.firstElement().getX() + dir, coordonnee.firstElement().getY()));
-                }
-            }
-        } else {
-            if (axis == 'y') {
-                for (int i = 0; i < coordonnee.size(); i++) {
-                    coordonnee.get(i).setY(coordonnee.get(i).getY() + dir);
-                }
+        coorX = coordonnee.firstElement().getX();
+        coorY = coordonnee.firstElement().getY();
 
-            } else if (axis == 'x') {
-
-                for (int i = 0; i < coordonnee.size(); i++) {
-                    coordonnee.get(i).setX(coordonnee.get(i).getX() + dir);
-                }
-            }
+        if(axis == 'x'){
+            coorX += dir;
+        }else{
+            coorY += dir;
         }
+
+        coordonnee.remove(coordonnee.lastElement());
+        coordonnee.add(0, new Case(coorX, coorY));
     }
 
     public int opposit(int nb) {
@@ -125,8 +106,7 @@ public class Serpent {
     public void dessiner(Graphics g) {
 
         for (int i = 0; i < coordonnee.size(); i++) {
-            g.setColor(Color.green);
-            g.fillRect(coordonnee.get(i).getX() * 20, coordonnee.get(i).getY() * 20, 20, 20);
+            coordonnee.get(i).dessiner(g);
         }
 
     }

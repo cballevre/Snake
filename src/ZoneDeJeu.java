@@ -18,14 +18,14 @@ public class ZoneDeJeu extends JPanel {
         this.gridX = gridX;
         this.gridY = gridY;
 
-        setPreferredSize(new Dimension(gridX * 20, gridY * 20));
+        setPreferredSize(new Dimension((gridX * Case.getSize()) + 40,(gridY * Case.getSize()) + 40));
         terrain = new Terrain(nbFood, gridX, gridY);
         serpent = new Serpent(snake, this, terrain.getGrid());
     }
 
     public void paint(Graphics g) {
-        g.setColor(Color.white);
-        g.fillRect(0, 0, gridX * 20, gridY * 20);
+        g.setColor(new Color(1, 44, 57));
+        g.fillRect(0, 0, gridX * 20 +40, gridY * 20+40);
         terrain.dessiner(g);
         serpent.dessiner(g);
     }

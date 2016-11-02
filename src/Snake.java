@@ -25,12 +25,16 @@ public class Snake extends JFrame implements KeyListener {
     }
 
     public void start(int nbFood, int gridX, int gridY) {
-        JPanel zoneDeJeu = new ZoneDeJeu(this, nbFood, gridX, gridY);
+
         getContentPane().removeAll();
+
+        JPanel zoneDeJeu = new ZoneDeJeu(this, nbFood, gridX, gridY);
         addKeyListener(this);
+
         setFocusable(true);
         requestFocus();
         getContentPane().add(zoneDeJeu, BorderLayout.CENTER);
+        setResizable(false);
         pack();
         validate();
     }
@@ -41,7 +45,6 @@ public class Snake extends JFrame implements KeyListener {
         gameOver.add(perdu, BorderLayout.CENTER);
         getContentPane().removeAll();
         getContentPane().add(gameOver, BorderLayout.CENTER);
-        pack();
         validate();
     }
 

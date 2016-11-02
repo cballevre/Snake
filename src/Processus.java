@@ -16,11 +16,10 @@ public class Processus implements Runnable {
         for (; ; ) {
             serpent.deplacer();
             try {
-                Thread.sleep(200);
+                Thread.sleep(75);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             serpent.repaint();
         }
 

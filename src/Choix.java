@@ -23,7 +23,7 @@ public class Choix extends JPanel implements ActionListener {
         this.snake = snake;
 
         setLayout(new BorderLayout());
-        JLabel titre = new JLabel("Choix des param�tres");
+        JLabel titre = new JLabel("Choix des paramètres");
         titre.setHorizontalAlignment(JLabel.CENTER);
         titre.setPreferredSize(new Dimension(100, 30));
         add(titre, BorderLayout.NORTH);
@@ -31,7 +31,7 @@ public class Choix extends JPanel implements ActionListener {
         JPanel zoneCentre = new JPanel();
         zoneCentre.setLayout(new GridLayout(2, 2));
 
-        zoneCentre.add(new JLabel("Quantit� de nourriture"));
+        zoneCentre.add(new JLabel("Quantitée de nourriture"));
 
         String[] nbFoods = {"5", "10", "15", "20"};
         nbFood = new JComboBox(nbFoods);
