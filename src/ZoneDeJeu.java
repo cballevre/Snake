@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 public class ZoneDeJeu extends JPanel {
 
     private Terrain terrain;
+    private Processus processus;
     private Serpent serpent;
 
     private int gridX;

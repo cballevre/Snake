@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Vector;
+import java.util.regex.Matcher;
 
 public class Serpent {
 
@@ -81,8 +82,14 @@ public class Serpent {
         coorY = coordonnee.firstElement().getY();
 
         if(axis == 'x'){
+            if(coordonnee.size() > 1)
+                if(coorX == coordonnee.get(1).getX() - dir)
+                    dir = opposit(dir);
             coorX += dir;
         }else{
+            if(coordonnee.size() > 1)
+                if(coorY == coordonnee.get(1).getY() - dir)
+                    dir = opposit(dir);
             coorY += dir;
         }
 
@@ -97,7 +104,7 @@ public class Serpent {
         if (nb > 0) {
             result = nb - (nb + 1);
         } else {
-            result = nb + (nb + 1);
+            result = Math.abs(nb);
         }
 
         return result;

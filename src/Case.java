@@ -45,7 +45,6 @@ public class Case {
     }
 
     public static int getSize(){
-
         return SIZE;
     }
 
