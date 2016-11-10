@@ -24,6 +24,14 @@ public class ZoneDeJeu extends JPanel {
         serpent = new Serpent(snake, this, terrain.getGrid());
     }
 
+    public Serpent getSerpent(){
+        return serpent;
+    }
+
+    public Terrain getTerrain(){
+        return terrain;
+    }
+
     public void paint(Graphics g) {
         g.setColor(new Color(1, 44, 57));
         g.fillRect(0, 0, gridX * 20 +40, gridY * 20+40);

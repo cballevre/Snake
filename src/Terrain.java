@@ -22,7 +22,6 @@ public class Terrain {
     public void constructGrid(){
 
         grid = new int[gridX][gridY];
-        int nbFoodCreate = 0;
 
         for(int i=0; i < gridX; i++){
             for (int j = 0; j < gridY; j++) {
@@ -40,15 +39,19 @@ public class Terrain {
             grid[gridX-1][h] = 2;
         }
 
-        while (nbFoodCreate != nbFood) {
-            int x = alea(0, gridX);
-            int y = alea(0, gridY);
-            if (grid[x][y] == 0) {
-                grid[x][y] = 1;
-                nbFoodCreate += 1;
-            }
-        }
+        newFood();
 
+    }
+
+    public void newFood(){
+        int x = alea(1, gridX-1);
+        int y = alea(1, gridY-1);
+
+        if (grid[x][y] == 0) {
+            grid[x][y] = 1;
+        }else{
+            newFood();
+        }
     }
 
     public void dessiner(Graphics g) {
@@ -57,8 +60,7 @@ public class Terrain {
                 if (grid[i][j] == 1) {
                     new Food(i, j, g);
                 }else if(grid[i][j] == 2){
-                    g.setColor(new Color(181, 18, 65));
-                    g.fillRect(i * 20, j * 20, 20, 20);
+                    new Border(i, j, g);
                 }
             }
         }
@@ -71,4 +73,6 @@ public class Terrain {
     public int[][] getGrid() {
         return grid;
     }
+
+
 }

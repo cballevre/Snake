@@ -41,7 +41,7 @@ public class Snake extends JFrame implements KeyListener {
 
     public void end() {
         JPanel gameOver = new JPanel();
-        JLabel perdu = new JLabel("Perdu");
+        JLabel perdu = new JLabel("Perdu ! Mais tu as attient le score de " + Serpent.nbFood);
         gameOver.add(perdu, BorderLayout.CENTER);
         getContentPane().removeAll();
         getContentPane().add(gameOver, BorderLayout.CENTER);

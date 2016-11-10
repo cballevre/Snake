@@ -13,13 +13,13 @@ public class Serpent {
     private int[][] grid;
     private ZoneDeJeu zoneDeJeu;
     private Snake snake;
+    public static int nbFood;
 
     public Serpent(Snake snake, ZoneDeJeu zoneDeJeu, int[][] grid) {
 
         this.snake = snake;
         this.zoneDeJeu = zoneDeJeu;
         this.grid = grid;
-
 
         coordonnee = new Vector<Case>();
         coordonnee.add(new Case(2, 2));
@@ -50,7 +50,11 @@ public class Serpent {
         if (grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] == 1) {
             coordonnee.add(new Case(coordonnee.lastElement().getX() + 1, coordonnee.lastElement().getY()));
             grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] = 0;
+            zoneDeJeu.getTerrain().newFood();
+            this.nbFood += 1;
         } else if (grid[coordonnee.firstElement().getX()][coordonnee.firstElement().getY()] == 2) {
+            snake.end();
+        } else if (mordreLaQueue()) {
             snake.end();
         }
 
@@ -122,5 +126,18 @@ public class Serpent {
         zoneDeJeu.repaint();
     }
 
+    public boolean mordreLaQueue(){
+
+        int x = coordonnee.firstElement().getX();
+        int y = coordonnee.firstElement().getY();
+        boolean result = false;
+
+        if(coordonnee.size() > 1)
+            for(int i = 1; i < coordonnee.size(); i++)
+                if(x == coordonnee.get(i).getX() && y == coordonnee.get(i).getY())
+                    result = true;
+
+        return result;
+    }
 
 }
