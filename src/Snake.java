@@ -50,7 +50,7 @@ public class Snake extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Serpent.setDirection(KeyEvent.getKeyText(e.getKeyCode()));
+        Serpent.setDirection(Key.valueOf(e.getKeyCode()));
     }
 
     public void keyReleased(KeyEvent e) {

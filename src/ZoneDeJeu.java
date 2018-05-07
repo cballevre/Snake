@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import Case.Case;
+
 public class ZoneDeJeu extends JPanel {
 
     private Terrain terrain;
@@ -19,7 +21,7 @@ public class ZoneDeJeu extends JPanel {
         this.gridX = gridX;
         this.gridY = gridY;
 
-        setPreferredSize(new Dimension((gridX * Case.getSize()) + 40,(gridY * Case.getSize()) + 40));
+        setPreferredSize(new Dimension((gridX * Case.getSize()),(gridY * Case.getSize())));
         terrain = new Terrain(nbFood, gridX, gridY);
         serpent = new Serpent(snake, this, terrain.getGrid());
     }

@@ -13,7 +13,7 @@ public class Processus implements Runnable {
 
     @Override
     public void run() {
-        for (; ; ) {
+        for (;;) {
             serpent.deplacer();
             try {
                 Thread.sleep(75);

@@ -1,4 +1,7 @@
 
+import Case.Border;
+import Case.Food;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -29,14 +32,14 @@ public class Terrain {
             }
         }
 
-        for(int k=0; k < gridX; k++){
-            grid[k][0] = 2;
-            grid[k][gridY-1] = 2;
+        for(int k=1; k < (gridX-1); k++){
+            grid[k][1] = 2;
+            grid[k][gridY-2] = 2;
         }
 
-        for(int h=0; h < gridY; h++){
-            grid[0][h] = 2;
-            grid[gridX-1][h] = 2;
+        for(int h=1; h < (gridY-1); h++){
+            grid[1][h] = 2;
+            grid[gridX-2][h] = 2;
         }
 
         newFood();

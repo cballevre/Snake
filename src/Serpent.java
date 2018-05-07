@@ -1,14 +1,13 @@
 
-import java.awt.Color;
+
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Vector;
-import java.util.regex.Matcher;
+
+import Case.Case;
 
 public class Serpent {
 
-    private static int direction = 0;
+    private static Key direction = Key.NONE;
     private Vector<Case> coordonnee;
     private int[][] grid;
     private ZoneDeJeu zoneDeJeu;
@@ -28,21 +27,8 @@ public class Serpent {
 
     }
 
-    public static void setDirection(String keyText) {
-        switch (keyText) {
-            case "Haut":
-                direction = 1;
-                break;
-            case "Bas":
-                direction = 2;
-                break;
-            case "Gauche":
-                direction = 3;
-                break;
-            case "Droite":
-                direction = 4;
-                break;
-        }
+    public static void setDirection(Key key) {
+        direction = key;
     }
 
     public void deplacer() {
@@ -59,19 +45,19 @@ public class Serpent {
         }
 
         switch (direction) {
-            case 0:
-                break;
-            case 1:
+            case UP:
                 changeDirection(-1, 'y');
                 break;
-            case 2:
+            case DOWN:
                 changeDirection(+1, 'y');
                 break;
-            case 3:
+            case LEFT:
                 changeDirection(-1, 'x');
                 break;
-            case 4:
+            case RIGHT:
                 changeDirection(+1, 'x');
+                break;
+            default:
                 break;
         }
 
